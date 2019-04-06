@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Todos />
+    <footer class="info">
+      <p>Simple ToDo App</p>
+    </footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  import Todos from './components/Todos'
+  
+  //app Vue instance
+  const app = {
+    name: 'app',
+    components: {
+      Todos
+    },
+    // app initial state
+    data: () => {
+      return {
+      }
+    }
   }
-}
+
+  export default app
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+[v-cloak] { display: none; }
 </style>
