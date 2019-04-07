@@ -5,21 +5,35 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "test": "./node_modules/.bin/jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "core-js": "^2.6.5",
-    "vue": "^2.6.6",
+    "vue": "^2.6.10",
     "vuejs-logger": "^1.5.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/polyfill": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/runtime": "^7.1.0",
     "@vue/cli-plugin-babel": "^3.5.0",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-service": "^3.5.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "24.1.0",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "core-js": "^2.6.5",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
+    "jest": "^24.7.1",
+    "jest-transform-stub": "^2.0.0",
+    "jest-vue-preprocessor": "^1.5.0",
+    "vue-jest": "^3.0.4",
     "vue-template-compiler": "^2.5.21"
   },
   "eslintConfig": {
@@ -45,5 +59,33 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "jest": {
+    "verbose": true,
+    "cache": false,
+    "collectCoverage": true,
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx)$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue-preprocessor",
+      ".+\\.(css|style|less|sass|scss|png|jpg|ttf|woff|woff2)$": "<rootDir>/node_modules/jest-transform-stub"
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1",
+      "src/components/([^\\.]*)$": "<rootDir>/src/components/$1.vue",
+      "^vue$": "vue/dist/vue.common.js",
+      "src/([^\\.]*)$": "<rootDir>/src/$1.vue"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(babel-jest|jest-vue-preprocessor)/)",
+      "node_modules/.*"
+    ]
+  }
 }

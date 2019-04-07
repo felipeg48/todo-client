@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="title">ToDo's</h1>
+    <h1 class="title" data-test="todo-title">ToDo's</h1>
     <h1 class="email">{{userEmail}}</h1>
     <section class="todoapp">
       <div v-if="loading">
@@ -63,17 +63,17 @@
   // visibility filters
   let filters = {
     all: function (todos) {
-      return todos
+      return todos;
     },
     active: function (todos) {
       return todos.filter(function (todo) {
-        return !todo.completed
-      })
+        return !todo.completed;
+      });
     },
     completed: function (todos) {
       return todos.filter(function (todo) {
-        return todo.completed
-      })
+        return todo.completed;
+      });
     }
   }
 
@@ -105,14 +105,14 @@
       // With Spring Boot
       api.getAll()  
       .then(response => {  
-        this.$log.debug("Data loaded: ", response.data)  
-        this.todos = response.data  
+        this.$log.debug("Data loaded: ", response.data);
+        this.todos = response.data; 
       })  
       .catch(error => {  
-        this.$log.debug(error)  
-        this.error = "Failed to load todos"  
+        this.$log.debug(error);  
+        this.error = "Failed to load todos";  
       })  
-      .finally(() => this.loading = false)  
+      .finally(() => this.loading = false);  
 
     },
 
@@ -120,32 +120,32 @@
     // http://vuejs.org/guide/computed.html
     computed: {
       filteredTodos: function () {
-        return filters[this.visibility](this.todos)
+        return filters[this.visibility](this.todos);
       },
       remaining: function () {
-        return filters.active(this.todos).length
+        return filters.active(this.todos).length;
       },
       allDone: {
         get: function () {
-          return this.remaining === 0
+          return this.remaining === 0;
         },
         set: function (value) {
           this.todos.forEach(function (todo) {
-            todo.completed = value
-          })
+            todo.completed = value;
+          });
         }
       },
       userEmail: function () {
-        return this.activeUser ? this.activeUser.email : ''
+        return this.activeUser ? this.activeUser.email : '';
       },
       inputPlaceholder: function () {
-        return this.activeUser ? this.activeUser.given_name + ', what needs to be done?' : 'What needs to be done?'
+        return this.activeUser ? this.activeUser.given_name + ', what needs to be done?' : 'What needs to be done?';
       }
     },
 
     filters: {
       pluralize: function (n) {
-        return n === 1 ? 'item' : 'items'
+        return n === 1 ? 'item' : 'items';
       }
     },
 
@@ -154,7 +154,7 @@
     methods: {
 
       addTodo: function () {
-        var value = this.newTodo && this.newTodo.trim()
+        var value = this.newTodo && this.newTodo.trim();
         if (!value) {
           return;
         }
